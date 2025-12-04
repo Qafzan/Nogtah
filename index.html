@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio & Produits – Salem Qafzan</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      color: #222;
+    }
+    header {
+      background: #111;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      padding: 100px 40px;
+      text-align: center;
+      background: #eaeaea;
+    }
+    .hero h2 { font-size: 40px; margin-bottom: 10px; }
+    .section {
+      padding: 60px 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Salem Qafzan</h1>
+    <nav>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#produits">Produits</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Portfolio & Boutique</h2>
+    <p>Architecture, dessin graphique, calligraphie et créations originales.</p>
+  </section>
+
+  <section id="portfolio" class="section">
+    <h2>Portfolio</h2>
+    <p>Une sélection de mes projets architecturaux et dessins.</p>
+    <div class="grid">
+      <div class="card">
+        <img src="https://via.placeholder.com/400x300" alt="Projet 1" />
+        <h3>Projet 1</h3>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/400x300" alt="Projet 2" />
+        <h3>Projet 2</h3>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/400x300" alt="Projet 3" />
+        <h3>Projet 3</h3>
+      </div>
+    </div>
+  </section>
+
+  <section id="produits" class="section">
+    <h2>Produits</h2>
+    <p>Prints, dessins originaux et œuvres disponibles.</p>
+    <div class="grid">
+      <div class="card">
+        <img src="https://via.placeholder.com/400x300" alt="Produit 1" />
+        <h3>Dessin 1</h3>
+        <p>Prix : 40€</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/400x300" alt="Produit 2" />
+        <h3>Dessin 2</h3>
+        <p>Prix : 60€</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/400x300" alt="Produit 3" />
+        <h3>Dessin 3</h3>
+        <p>Prix : 80€</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+    <p>Pour toute commande ou collaboration : <strong>salem.qafzan@example.com</strong></p>
+  </section>
+
+  <footer>
+    © 2025 Salem Qafzan – Tous droits réservés
+  </footer>
+</body>
+</html>
