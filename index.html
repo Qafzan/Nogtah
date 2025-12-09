@@ -1,75 +1,65 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio & Produits – Salem Qafzan</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Salem Qafzan — Portfolio & Boutique</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      color: #222;
-    }
-    header {
-      background: #111;
-      color: white;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 24px;
-      letter-spacing: 1px;
-    }
-    nav a {
-      color: white;
-      margin-left: 20px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .hero {
-      padding: 100px 40px;
-      text-align: center;
-      background: #eaeaea;
-    }
-    .hero h2 { font-size: 40px; margin-bottom: 10px; }
-    .section {
-      padding: 60px 40px;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: white;
-      padding: 15px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      color: white;
-      margin-top: 40px;
-    }
+    :root{--bg:#f6f6f7;--card:#ffffff;--muted:#6b6b6b;--accent:#0b74ff;--glass: rgba(255,255,255,0.6)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, Arial, sans-serif;background:var(--bg);color:#111}
+    header{position:sticky;top:0;background:linear-gradient(90deg,#0f1724, #0b1a2b);color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;z-index:40}
+    header .brand{display:flex;gap:12px;align-items:center}
+    header h1{font-size:18px;margin:0}
+    nav a{color:rgba(255,255,255,0.9);text-decoration:none;margin-left:18px;font-weight:600}
+    .hero{padding:60px 20px;text-align:center;background:linear-gradient(180deg, rgba(11,116,255,0.06), transparent)}
+    .hero h2{font-size:34px;margin:0 0 8px}
+    .hero p{margin:0;color:var(--muted)}
+
+    .section{max-width:1100px;margin:40px auto;padding:0 20px}
+    .controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+    .btn{background:var(--card);border-radius:10px;padding:8px 12px;border:1px solid #e6e6e6;cursor:pointer;font-weight:600}
+    .btn.active{box-shadow:0 6px 18px rgba(11,116,255,0.12);border-color:rgba(11,116,255,0.25)}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .card{background:var(--card);border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06);overflow:hidden;display:flex;flex-direction:column}
+    .card img{width:100%;height:200px;object-fit:cover;display:block}
+    .card .meta{padding:12px 14px;flex:1;display:flex;flex-direction:column}
+    .card h3{margin:0 0 6px;font-size:16px}
+    .meta .price{margin-top:auto;font-weight:700}
+    .card .actions{display:flex;gap:8px;padding:12px;background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent)}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* lightbox modal */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;padding:20px;z-index:50;opacity:0;pointer-events:none;transition:all .2s}
+    .modal.open{opacity:1;pointer-events:auto}
+    .modal .box{background:var(--card);max-width:1000px;width:100%;border-radius:10px;overflow:hidden;display:flex;gap:12px}
+    .modal .imgwrap{flex:1;min-height:60vh;background:#eee;display:flex;align-items:center;justify-content:center}
+    .modal .imgwrap img{max-width:100%;max-height:80vh;object-fit:contain}
+    .modal .info{width:320px;padding:16px}
+    .close{background:#f3f3f3;border-radius:8px;padding:6px 8px;border:none;cursor:pointer}
+
+    /* cart */
+    .cart{position:fixed;right:18px;bottom:18px;background:var(--accent);color:#fff;padding:12px 14px;border-radius:28px;box-shadow:0 8px 24px rgba(11,116,255,0.22);cursor:pointer;z-index:60}
+    .sidebar{position:fixed;right:0;top:0;height:100vh;width:360px;background:var(--card);box-shadow:-10px 0 40px rgba(0,0,0,0.08);transform:translateX(100%);transition:transform .28s;z-index:70;padding:18px;display:flex;flex-direction:column;gap:12px}
+    .sidebar.open{transform:translateX(0)}
+    .sidebar h3{margin:0}
+    .cart-item{display:flex;gap:12px;align-items:center}
+    .cart-item img{width:64px;height:64px;object-fit:cover;border-radius:8px}
+    .cart-item .infos{flex:1}
+
+    footer{padding:28px 20px;text-align:center;color:var(--muted)}
+
+    /* responsive */
+    @media (max-width:600px){header h1{font-size:16px}.modal .box{flex-direction:column}.modal .info{width:100%}}
   </style>
 </head>
 <body>
   <header>
-    <h1>Salem Qafzan</h1>
+    <div class="brand">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="4" fill="#fff" opacity="0.06"/><path d="M6 17L12 7l6 10" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h1>Salem Qafzan</h1>
+    </div>
     <nav>
       <a href="#portfolio">Portfolio</a>
       <a href="#produits">Produits</a>
@@ -78,58 +68,240 @@
   </header>
 
   <section class="hero">
-    <h2>Portfolio & Boutique</h2>
-    <p>Architecture, dessin graphique, calligraphie et créations originales.</p>
-  </section>
+    <h2>Choisis ton univers</h2>
+    <p>Explore mes créations à travers trois domaines</p>
 
-  <section id="portfolio" class="section">
-    <h2>Portfolio</h2>
-    <p>Une sélection de mes projets architecturaux et dessins.</p>
-    <div class="grid">
-      <div class="card">
-        <img src="https://via.placeholder.com/400x300" alt="Projet 1" />
-        <h3>Projet 1</h3>
+    <div class="grid" style="margin-top:40px">
+      <div class="card option" data-section="vetements">
+        <img src="https://picsum.photos/id/1067/800/600" alt="Vêtements">
+        <div class="meta"><h3>Vêtements</h3><p class="small">Textile, motifs, pièces uniques</p></div>
       </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/400x300" alt="Projet 2" />
-        <h3>Projet 2</h3>
+      <div class="card option" data-section="decoration">
+        <img src="https://picsum.photos/id/1080/800/600" alt="Décoration">
+        <div class="meta"><h3>Décoration</h3><p class="small">Objets, affiches, art mural</p></div>
       </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/400x300" alt="Projet 3" />
-        <h3>Projet 3</h3>
+      <div class="card option" data-section="apprentissage">
+        <img src="https://picsum.photos/id/1074/800/600" alt="Apprentissage">
+        <div class="meta"><h3>Apprentissage</h3><p class="small">Cours, ateliers, transmission</p></div>
       </div>
     </div>
   </section>
 
-  <section id="produits" class="section">
-    <h2>Produits</h2>
-    <p>Prints, dessins originaux et œuvres disponibles.</p>
-    <div class="grid">
-      <div class="card">
-        <img src="https://via.placeholder.com/400x300" alt="Produit 1" />
-        <h3>Dessin 1</h3>
-        <p>Prix : 40€</p>
+  <main class="section" id="portfolio">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:10px">
+      <div class="controls" id="filters">
+        <button class="btn active" data-filter="all">Tous</button>
+        <button class="btn" data-filter="architecture">Architecture</button>
+        <button class="btn" data-filter="dessin">Dessins</button>
+        <button class="btn" data-filter="calligraphie">Calligraphie</button>
       </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/400x300" alt="Produit 2" />
-        <h3>Dessin 2</h3>
-        <p>Prix : 60€</p>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/400x300" alt="Produit 3" />
-        <h3>Dessin 3</h3>
-        <p>Prix : 80€</p>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span class="small">Rechercher</span>
+        <input id="search" placeholder="mots-clés" style="padding:8px 10px;border-radius:8px;border:1px solid #eaeaea" />
       </div>
     </div>
+
+    <div class="grid" id="gallery"></div>
+  </main>
+
+  <section class="section" id="produits">
+    <h2>Produits en vente</h2>
+    <div class="grid" id="products"></div>
   </section>
 
-  <section id="contact" class="section">
+  <div style="max-width:1100px;margin:40px auto;padding:0 20px" id="contact">
     <h2>Contact</h2>
-    <p>Pour toute commande ou collaboration : <strong>salem.qafzan@example.com</strong></p>
-  </section>
+    <p class="small">Pour commandes & collaborations : <strong>salem.qafzan@example.com</strong></p>
+  </div>
+
+  <button class="cart" id="cartBtn">🛒 <span id="cartCount">0</span></button>
+  <aside class="sidebar" id="cartSidebar">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h3>Panier</h3>
+      <button id="closeCart" class="close">Fermer</button>
+    </div>
+    <div id="cartList" style="flex:1;overflow:auto;padding-right:6px"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <strong>Total :</strong>
+      <strong id="cartTotal">0€</strong>
+    </div>
+    <button class="btn" id="checkout">Procéder au paiement</button>
+  </aside>
+
+  <div class="modal" id="lightbox">
+    <div class="box">
+      <div class="imgwrap"><img src="" id="lbImg" alt=""/></div>
+      <div class="info">
+        <h3 id="lbTitle">Titre</h3>
+        <p id="lbDesc" class="small">Description</p>
+        <p style="margin-top:10px"><strong id="lbPrice">Prix</strong></p>
+        <div style="margin-top:12px;display:flex;gap:8px">
+          <button class="btn" id="addFav">❤ Favoris</button>
+          <button class="btn" id="addCart">➕ Ajouter au panier</button>
+        </div>
+        <div style="margin-top:12px"><button class="close" id="closeLb">Fermer</button></div>
+      </div>
+    </div>
+  </div>
 
   <footer>
-    © 2025 Salem Qafzan – Tous droits réservés
+    © 2025 Salem Qafzan — Portfolio interactif
   </footer>
+
+  <script>
+    /* ======= Données sample ======= */
+    const items = [
+      {id:1,title:"T-shirt Graphique",section:"vetements",img:"https://picsum.photos/id/1059/800/600",desc:"T-shirt imprimé, édition limitée.",price:45},
+      {id:2,title:"Sweat Calligraphie",section:"vetements",img:"https://picsum.photos/id/1060/800/600",desc:"Sweat à capuche, calligraphie originale.",price:75},
+
+      {id:3,title:"Affiche murale",section:"decoration",img:"https://picsum.photos/id/1027/800/600",desc:"Affiche artistique A2.",price:40},
+      {id:4,title:"Dessin encadré",section:"decoration",img:"https://picsum.photos/id/1033/800/600",desc:"Œuvre originale encadrée.",price:120},
+
+      {id:5,title:"Cours dessin",section:"apprentissage",img:"https://pic
+
+    /* ======= UI references ======= */
+    const gallery = document.getElementById('gallery');
+    const products = document.getElementById('products');
+    const filters = document.getElementById('filters');
+    const search = document.getElementById('search');
+
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbTitle = document.getElementById('lbTitle');
+    const lbDesc = document.getElementById('lbDesc');
+    const lbPrice = document.getElementById('lbPrice');
+    const addCartBtn = document.getElementById('addCart');
+    const addFavBtn = document.getElementById('addFav');
+
+    const cartBtn = document.getElementById('cartBtn');
+    const cartSidebar = document.getElementById('cartSidebar');
+    const closeCart = document.getElementById('closeCart');
+    const cartList = document.getElementById('cartList');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+
+    let state = {filter:'all',query:'',cart:[],favs:[]};
+    let currentItem = null;
+
+    /* ======= Render functions ======= */
+    function renderGallery(){
+      gallery.innerHTML='';
+      const q = state.query.trim().toLowerCase();
+      const filtered = items.filter(it => (state.filter==='all' || it.category===state.filter) && (it.title.toLowerCase().includes(q) || it.desc.toLowerCase().includes(q)) );
+      filtered.forEach(it => {
+        const card = document.createElement('article');
+        card.className='card';
+        card.innerHTML = `
+          <img src="${it.img}" alt="${it.title}" loading="lazy" />
+          <div class="meta">
+            <h3>${it.title}</h3>
+            <p class="small">${it.category}</p>
+            <div class="price">${it.price>0? it.price + '€' : 'Projet'}</div>
+          </div>
+          <div class="actions">
+            <button class="btn view" data-id="${it.id}">Voir</button>
+            <button class="btn add" data-id="${it.id}">Ajouter</button>
+          </div>`;
+        gallery.appendChild(card);
+      });
+    }
+
+    function renderProducts(){
+      products.innerHTML='';
+      const sellables = items.filter(i=>i.price>0);
+      sellables.forEach(it=>{
+        const card = document.createElement('article');
+        card.className='card';
+        card.innerHTML = `
+          <img src="${it.img}" alt="${it.title}" loading="lazy" />
+          <div class="meta">
+            <h3>${it.title}</h3>
+            <p class="small">${it.desc}</p>
+            <div class="price">${it.price}€</div>
+          </div>
+          <div class="actions">
+            <button class="btn view" data-id="${it.id}">Détails</button>
+            <button class="btn add" data-id="${it.id}">Ajouter au panier</button>
+          </div>`;
+        products.appendChild(card);
+      });
+    }
+
+    /* ======= Lightbox ======= */
+    function openLightbox(id){
+      const it = items.find(x=>x.id==id);
+      if(!it) return;
+      currentItem = it;
+      lbImg.src = it.img;
+      lbTitle.textContent = it.title;
+      lbDesc.textContent = it.desc;
+      lbPrice.textContent = it.price>0? it.price + '€' : 'Projet (non vendu)';
+      lightbox.classList.add('open');
+    }
+    function closeLightbox(){ lightbox.classList.remove('open'); currentItem=null }
+
+    /* ======= Cart ======= */
+    function addToCart(id){
+      const it = items.find(x=>x.id==id);
+      if(!it || it.price<=0) { alert('Produit non disponible à la vente'); return }
+      const entry = state.cart.find(c=>c.id==id);
+      if(entry) entry.qty++;
+      else state.cart.push({id:it.id,title:it.title,price:it.price,qty:1,img:it.img});
+      updateCartUI();
+    }
+    function updateCartUI(){
+      cartList.innerHTML='';
+      let total = 0; let count=0;
+      state.cart.forEach(ci=>{
+        total += ci.price * ci.qty; count += ci.qty;
+        const node = document.createElement('div'); node.className='cart-item';
+        node.innerHTML = `<img src="${ci.img}" alt="${ci.title}" /><div class=\"infos\"><div style=\"font-weight:700\">${ci.title}</div><div class=\"small\">${ci.qty} × ${ci.price}€</div></div><div><button class=\"btn remove\" data-id=\"${ci.id}\">Suppr</button></div>`;
+        cartList.appendChild(node);
+      });
+      cartTotal.textContent = total + '€';
+      cartCount.textContent = count;
+    }
+    function removeFromCart(id){ state.cart = state.cart.filter(c=>c.id!=id); updateCartUI(); }
+
+    /* ======= Events ======= */
+    document.addEventListener('click', e=>{
+      const v = e.target.closest('.view'); if(v){ openLightbox(v.dataset.id); }
+      const a = e.target.closest('.add'); if(a){ addToCart(Number(a.dataset.id)); }
+      const rem = e.target.closest('.remove'); if(rem){ removeFromCart(Number(rem.dataset.id)); }
+    });
+
+    // lightbox buttons
+    document.getElementById('closeLb').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) closeLightbox(); });
+    addCartBtn.addEventListener('click', ()=>{ if(currentItem) addToCart(currentItem.id); });
+    addFavBtn.addEventListener('click', ()=>{
+      if(!currentItem) return; if(!state.favs.includes(currentItem.id)) state.favs.push(currentItem.id); alert('Ajouté aux favoris');
+    });
+
+    // filters
+    filters.addEventListener('click', e=>{
+      const btn = e.target.closest('button'); if(!btn) return; const f = btn.dataset.filter; state.filter = f; Array.from(filters.querySelectorAll('.btn')).forEach(b=>b.classList.remove('active')); btn.classList.add('active'); renderGallery();
+    });
+
+    // search
+    search.addEventListener('input', e=>{ state.query = e.target.value; renderGallery(); });
+
+    // cart UI
+    cartBtn.addEventListener('click', ()=>{ cartSidebar.classList.add('open'); });
+    closeCart.addEventListener('click', ()=>{ cartSidebar.classList.remove('open'); });
+
+    // checkout (demo)
+    document.getElementById('checkout').addEventListener('click', ()=>{
+      if(state.cart.length===0) return alert('Ton panier est vide');
+      // Ici tu peux intégrer Stripe/PayPal. Pour l'exemple :
+      alert('Procéder au paiement — exemple. Intégration à faire (Stripe/PayPal).');
+    });
+
+    // initial render
+    renderGallery(); renderProducts(); updateCartUI();
+
+    // small enhancement: keyboard esc to close
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeLightbox(); cartSidebar.classList.remove('open') } });
+  </script>
 </body>
 </html>
